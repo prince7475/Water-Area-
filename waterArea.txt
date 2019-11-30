@@ -1,0 +1,222 @@
+You are given an array of integers. Each non-zero integer represents the height of a pillar of width 1. 
+Imagine water being poured over all of the pillars and return the surface area of the water trapped 
+between the pillars viewed from the front. Note that spilled water should be ignored. Refer to the first
+minute of the video explanation below for a visual example.
+               0 1 2 3 4 5 6 7  8 9 0 1 2 3
+sample input: [0,8,0,0,5,0,0,10,0,0,1,1,0,3]
+sample output : 48
+
+function waterArea(heights){
+
+}
+           0 1 2 3 4 5 6  7  8  9 0  1  2  3
+leftArr =  [0,8,8,8,8,8,8,10,10,10,10,10,10,10]
+
+             0 1 2 3 4 5 6  7  8  9 0  1  2  3
+rightArr = [10,10,10,10,10,10,10,10,3,3,3,3,3,3]
+
+             0 1 2 3 4 5 6  7  8  9 0  1  2  3
+  result = [0,0,8,10,10,10,10,10,3,3,3,3,3,0] 
+     
+
+for(let i = 1; i < result.length - 1; i ++){
+let minHeight = Get the minHeight(leftArr[i], rightArr[i])
+result[i] = minHeight - arr[i]
+}
+return result.reduce((a, b) => a + b)
+
+
+Time -> O(N)
+Space -> O(N)
+main(heights){
+  let leftMaxHeight = getLeftMaxHeight(heights)
+  
+  let rightMaxHeight = getRightMaxHeight(heights)
+  
+  let result = []
+  
+  for(let i = 0; i < heights.length; i++){
+    let minHeight = Math.min(leftMaxHeight[i], rightMaxHeight[i])
+    result[i] = minHeight - heights[i]
+  }
+  
+  return result.reduce((a,b) => a + b)
+}
+
+
+
+getLeftMaxHeight(arr){
+let result = [arr[0]]
+  for(let i = 1; i < arr.length; i++){
+    if(arr[i] > arr[i - 1]){
+      result[i] = arr[i]
+    }else {
+      result[i] = arr[i - 1]
+    }
+  }
+  return result
+}
+
+
+function getRightMaxHeight(arr){
+  let result = new Array(arr.length).fill(null)
+  result[arr.length - 1] = arr[arr.length - 1]
+  for(let i = array.length - 2; i >= 0; i--){
+    if(arr[i] > arr[i + 1]){
+      result[i] = arr[i]
+    }else {
+      result[i] = arr[i + 1]
+    }
+  }
+  return result
+}
+
+
+
+
+
+function waterArea(heights){
+  
+  let leftMaxArea = getLeftMaxArea(heights)
+  
+  let rightMaxArea = getRightMaxArea(heights)
+  
+  let result = new Array(heights.length)
+  
+  for(let i = 0; i < heights.length; i++){
+    let minHeight = Math.min(leftMaxArea[i], rightMaxArea[i])
+    result[i] = minHeight - heights[i]
+  }
+  
+  return result.length > 0 ? result.reduce((a,b) => a + b): 0
+  
+}
+
+function getLeftMaxArea(array){
+  let result = [array[0]]
+  for(let i = 1; i < array.length; i++){
+    if(array[i] > result[i - 1]){
+    result[i] = array[i]
+    }else {
+    result[i] = result[i - 1]
+    }
+  }
+  
+  return result
+}
+
+
+function getRightMaxArea(array){
+  let result = new Array(array.length).fill(null)
+  result[array.length - 1] = array[array.length - 1]
+  for(let i = array.length - 2; i >= 0; i--){
+    if(array[i] > result[i + 1]){
+      result[i] = array[i]
+    }else {
+      result[i] = result[i + 1]
+    }
+  }
+  return result
+}
+
+
+
+
+
+
+
+function waterArea(heights){
+  
+  let leftMaxArea = getLeftMaxArea(heights)
+  
+  let rightMaxArea = getRightMaxArea(heights)
+    
+    let areas = []
+  for(let i = 0; i < heights.length; i++){
+      let minHeight = Math.min(leftMaxArea[i],rightMaxArea[i])
+      areas[i] = minHeight - heights[i]
+  }
+  
+  return areas.length > 0 ? areas.reduce((a,b) => a + b) : 0
+  
+}
+
+
+function getLeftMaxArea(array){
+  let result = array.map((el) => el)
+  
+  for(let i = 1; i < result.length; i++){
+    result[i] = result[i] > result[i - 1] ? result[i] : result[i - 1]
+  }
+  
+  return result
+}
+
+function getRightMaxArea(array){
+  let result = array.map((el) => el)
+    for(let i = result.length - 2; i >= 0; i--){
+      result[i] = result[i] > result[i + 1] ? result[i] : result[i + 1]
+    }
+  
+  return result
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
